@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sample.board.mapper.BoardMapper">
+
+	<!-- 게시판 리스트 -->
+	<!-- <select id="list" resultType="com.sample.board.vo.BoardVO">
+		<![CDATA[
+		select no, title, writer, writeDate, hit
+		from (
+			select /*+ INDEX_DESC(board SYS_C007810) */
+				rownum rno, no, title, writer, writeDate, hit
+			from board
+			
+			where rownum <= #{endRow}
+		)
+		where rno > #{startRow} - 1
+		]]>
+	</select>	 -->
+	
+	<select id="list" resultType="com.sample.board.vo.BoardVO">
+		<![CDATA[
+		select no, title, writer, writeDate, hit
+		from (
+			select /*+ INDEX_DESC(board SYS_C007810) */
+				rownum rno, no, title, writer, writeDate, hit
+			from board
+			
+			order by no desc
+		)
+		where rno between #{startRow} and #{endRow}
+		]]>
+	</select>	
+	
+	<!-- 게시판 전체 데이터 개수 -->
+	<select id="getTotalRow" resultType="long">
+		select count(*) from board
+		<include refid="search" />
+	</select>
+	
+	<!-- 게시판 글보기 -->
+	<select id="view" resultType="com.sample.board.vo.BoardVO">
+		select no, title, content, writer, writeDate, hit
+		from board
+		where no = #{no}
+	
+	</select>
+	
+	<!-- 조회수 1증가 -->	
+	<update id="increase">
+		update board
+		set hit = hit + 1
+		where no = #{no}
+	</update>
+	
+	<insert id="write">
+		insert into board(no, title, content, writer)
+		values(board_seq.nextval, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<update id="update">
+		update board set title = #{title}, content = #{content}
+		where no = #{no}
+	</update>
+	
+
+	<delete id="delete">
+		delete from board
+		where no = #{no}
+	</delete>
+	
+	
+	<sql id="search">
+		<!-- 검색을 해야할 때(word가 비어있지 않을 때) where문을 붙인다. -->
+		<if test="word != null and word != ''">
+			<!-- or, like -->
+			where 1=0
+				<if test="key.indexOf('t'.toString()) >= 0">
+					or title like ${"'%" + word + "%'"}
+				</if>
+				<if test="key.indexOf('c'.toString()) >= 0">
+					or content like ${"'%" + word + "%'"}
+				</if>
+				<if test="key.indexOf('w'.toString()) >= 0">
+					or writer like ${"'%" + word + "%'"}
+				</if>
+		</if>
+	</sql>
+</mapper>
