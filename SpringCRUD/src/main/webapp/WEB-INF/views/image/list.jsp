@@ -64,7 +64,7 @@ $(function(){
 					<img src="${vo.fileName }" alt="Lights" style="width: 100%">
 					<div class="caption">
 						<p><span class="no">${vo.no }</span>. ${vo.title }</p>
-						<div>${vo.id } (<fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd"/>)</div>
+						<div>${vo.userid } (<fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd"/>)</div>
 					</div>
 
 				</div>

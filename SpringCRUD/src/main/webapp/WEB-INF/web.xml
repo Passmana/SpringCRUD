@@ -9,20 +9,38 @@
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 	
+	
+	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> 
 
+	
+	
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+			<!-- 용량이 적으면 Main Memory 사용. 용량이 커지면 파일 사용. 저장 폴더가 없으면 만드세요. -->
+			<location>c:\\upload\\temp</location>
+			<max-file-size>20971520</max-file-size><!-- 1024*1024*20 : 파일 한개의 용량 제한 
+				: 20MB -->
+			<max-request-size>419430400</max-request-size> <!-- 전체 파일 사이즈 : 400M -->
+			<file-size-threshold>20971520</file-size-threshold><!-- 20M 이하면 메모리 / 
+				초과하면 파일 -->
+		</multipart-config>
+		
+
 	</servlet>
 		
 	<servlet-mapping>
