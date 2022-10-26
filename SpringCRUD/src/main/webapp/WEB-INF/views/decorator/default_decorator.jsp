@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>웹짱:<decorator:title /></title>
+<title>SpringCRUD:<decorator:title /></title>
 <!-- CDN 방식의 Bootstrap 라이브러리 등록 -> 디자인의 웹표준을 구현한 웹 라이브러리 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -93,11 +93,10 @@ article {
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
-						<li><a href="/notice/list.do">공지사항</a></li>
+						<li><a href="/notice/list.do">Home</a></li>
 						<li><a href="/image/list.do">이미지</a></li>
 						<li><a href="/board/list.do">게시판</a></li>
-						<li><a href="/qna/list.do">질문답변</a></li>
-						<li><a href="/center/list.do">고객센터</a></li>
+						
 						<c:if test="${!empty login }">
 							<li><a href="/message/list.do">메시지</a></li>
 							<c:if test="${login.gradeNo == 9 }">

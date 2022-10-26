@@ -76,7 +76,7 @@ $(function(){
 	  	</div>
 	  </li>
 	  <li class="list-group-item"><label>내용</label>${vo.content }</li>
-	  <li class="list-group-item"><label>아이디</label>${vo.id }</li>
+	  <li class="list-group-item"><label>아이디</label>${vo.userid }</li>
 	  <li class="list-group-item"><label>작성일</label><fmt:formatDate value="${vo.writeDate}" pattern="yyyy-MM-dd"/></li>
 	</ul>
 	<div>

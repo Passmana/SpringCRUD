@@ -23,7 +23,6 @@ $(function(){
 </script>
 </head>
 <body>
-${list }
 
  <div class="container">
   <h1>샘플 리스트</h1>
