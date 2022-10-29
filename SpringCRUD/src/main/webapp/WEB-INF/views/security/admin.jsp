@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="pageNav" tagdir="/WEB-INF/tags" %> 
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,12 @@
 <body>
 
 <h1>/sample/admin page</h1>
+
+<p>principal : <sec:authentication property="principal"/> </p>
+<p>MemberVO : <sec:authentication property="principal.member"/> </p>
+<p>사용자이름 : <sec:authentication property="principal.member.userName"/> </p>
+<p>사용자아이디 : <sec:authentication property="principal.username"/> </p>
+<p>사용자 권한 리스트 : <sec:authentication property="principal.member.authList"/> </p>
 
 <a href="/customLogout">logout</a>
  
